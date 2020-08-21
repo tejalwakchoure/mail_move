@@ -124,7 +124,7 @@ def process_all(oldEmail, newEmail, oldEmail_folders, logfile):
 	Process all mailboxes/folders/labels
 	"""
 	folder_names = []
-	excluded = ["Archive", "Draft", "Inbox", "Sent", "Trash"]
+	excluded = ["Archive", "Draft", "Inbox", "Sent", "Trash"] # General folders that are set up automatically when user sets up forwarding
 	
 	for folder in oldEmail_folders[1:]:
 		for f in folder:
@@ -165,7 +165,7 @@ def process_all(oldEmail, newEmail, oldEmail_folders, logfile):
 
 def main():
 
-	logfile = open("email_log_git.txt", "a")
+	logfile = open("email_log.txt", "a")
 	oldEmail, newEmail, oldEmail_folders, logfile = login(logfile)
 	oldEmail_folder_names = process_all(oldEmail, newEmail, oldEmail_folders, logfile)
 	compare_count(oldEmail, newEmail, oldEmail_folder_names, logfile) # Folder count after processing
