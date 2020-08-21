@@ -98,7 +98,7 @@ def process_email(oldEmail, newEmail, fname, logfile):
 			rvg, datag = newEmail.search(None, "ALL")
 
 		logfile.write("Email fetched! Appending to newEmail...")
-		msg = data[0][1]
+		msg = data[0][1] # If your emails are old and do not adhere to RFC 822, remove null characters using msg=data[0][1].replace(b'\x00', b'') instead
 		email_msg = email.message_from_bytes(msg)
 		if email_msg['date'] in [None, "", " "]:
 			org_date = email.utils.mktime_tz(email.utils.parsedate_tz(email_msg['received'].split(';')[-1]))
