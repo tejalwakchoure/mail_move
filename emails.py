@@ -93,6 +93,8 @@ def process_email(oldEmail, newEmail, fname, logfile):
 			oldEmail, newEmail, oldEmail_folders, logfile = login(logfile)
 			status, data = oldEmail.select('\"' + fname + '\"')
 			rv, data = oldEmail.search(None, "ALL")
+			statusg, datag = newEmail.select('\"' + fname + '\"')
+			rvg, datag = newEmail.search(None, "ALL")
 			rv, data = oldEmail.fetch(num, '(RFC822)')
 
 		logfile.write("Email fetched! Appending to newEmail...")
@@ -112,6 +114,8 @@ def process_email(oldEmail, newEmail, fname, logfile):
 
 		except imaplib.IMAP4.abort as e:
 			oldEmail, newEmail, oldEmail_folders, logfile = login(logfile)
+			status, data = oldEmail.select('\"' + fname + '\"')
+			rv, data = oldEmail.search(None, "ALL")
 			statusg, datag = newEmail.select('\"' + fname + '\"')
 			rvg, datag = newEmail.search(None, "ALL")
 			rvg, datag = newEmail.append('\"' + fname + '\"', None, imaplib.Time2Internaldate(org_date), msg)	
