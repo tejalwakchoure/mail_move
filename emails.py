@@ -160,7 +160,7 @@ def process_all(oldEmail, newEmail, oldEmail_folders, logfile):
 				statusg, datag = newEmail.select('\"' + fname + '\"')
 
 		process_email(oldEmail, newEmail, fname, logfile)
-		return folder_names
+	return folder_names
 
 
 def main():
